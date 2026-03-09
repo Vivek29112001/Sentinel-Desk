@@ -7,9 +7,20 @@ SentinelDesk is a modern desktop monitoring application that provides real-time 
 The platform combines Electron, Next.js, and Python to build a high-performance monitoring dashboard inspired by tools like Datadog, Grafana, and Windows Task Manager.
 
 ---
-# Download the folder and install all the necessary libraries and then run it using 
-# npm Start Dev
-## Features
+## Installation
+
+Clone the repository
+
+git clone https://github.com/yourusername/sentinel-desk
+
+Install dependencies
+
+npm install
+
+npm start dev
+
+The SentinelDesk desktop monitoring application will launch and display real-time system metrics including CPU usage, memory usage, disk utilization, and running processes.
+
 
 • Real-time CPU monitoring
 • Memory usage tracking
