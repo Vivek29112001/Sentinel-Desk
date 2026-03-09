@@ -8,7 +8,7 @@ The platform combines Electron, Next.js, and Python to build a high-performance 
 
 ---
 # Download the folder and install all the necessary libraries and then run it using 
-# npn Start Dev
+# npm Start Dev
 ## Features
 
 • Real-time CPU monitoring
