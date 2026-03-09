@@ -1,34 +1,17 @@
-"use client"
+"use client";
+
+import { Card } from "@/components/ui/card";
 
 export default function Header({ metrics }: any) {
-
   return (
+    <div className="h-16 border-b flex items-center px-6 justify-between">
+      <div className="flex gap-4 ">
+        <Card className="px-4 py-2">CPU: {metrics?.cpu ?? 0}%</Card>
 
-    <div className="h-16 bg-white border-b flex items-center justify-between px-8">
+        <Card className="px-4 py-2">RAM: {metrics?.memory ?? 0}%</Card>
 
-      <h1 className="text-xl font-bold">
-        Desktop Monitoring System
-      </h1>
-
-      {/* Live Data */}
-      <div className="flex gap-6 text-sm">
-
-        <div className="bg-gray-100 px-4 py-2 rounded">
-          CPU: <span className="font-bold">{metrics?.cpu ?? 0}%</span>
-        </div>
-
-        <div className="bg-gray-100 px-4 py-2 rounded">
-          Memory: <span className="font-bold">{metrics?.memory ?? 0}%</span>
-        </div>
-
-        <div className="bg-gray-100 px-4 py-2 rounded">
-          Disk: <span className="font-bold">{metrics?.disk ?? 0}%</span>
-        </div>
-
+        <Card className="px-4 py-2">Disk: {metrics?.disk ?? 0}%</Card>
       </div>
-
     </div>
-
-  )
-
+  );
 }

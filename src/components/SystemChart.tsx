@@ -1,23 +1,46 @@
-"use client"
+"use client";
 
-import { LineChart, Line, XAxis, YAxis, Tooltip } from "recharts"
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  ResponsiveContainer,
+  Tooltip,
+  CartesianGrid,
+} from "recharts";
 
-export default function SystemChart({ data }: any) {
-
+export default function SystemChart({ data, color }: any) {
   return (
+    <div className="w-full h-[250px]">
+      <ResponsiveContainer>
+        <LineChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
 
-    <LineChart width={600} height={300} data={data}>
+          <XAxis dataKey="time" tick={{ fontSize: 12 }} />
 
-      <XAxis dataKey="time" />
-      <YAxis />
+          <YAxis
+            domain={[0, 100]}
+            tick={{ fontSize: 12 }}
+            label={{
+              value: "Usage %",
+              angle: -90,
+              position: "insideLeft",
+            }}
+          />
 
-      <Tooltip />
+          <Tooltip />
 
-      <Line type="monotone" dataKey="cpu" />
-      <Line type="monotone" dataKey="memory" />
-
-    </LineChart>
-
-  )
-
+          <Line
+            type="monotone"
+            dataKey="value"
+            stroke={color}
+            dot={false}
+            strokeWidth={2}
+            isAnimationActive={false}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
 }

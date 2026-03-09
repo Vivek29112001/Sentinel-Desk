@@ -1,76 +1,71 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Sidebar from "@/src/components/sidebar/Sidebar"
-import MainMenu from "@/src/components/mainmenu/MainMenu"
-import Header from "@/src/components/header/Header"
+import { useState, useEffect } from "react";
+import Sidebar from "@/src/components/sidebar/Sidebar";
+import MainMenu from "@/src/components/mainmenu/MainMenu";
+import Header from "@/src/components/header/Header";
 
 export default function Home() {
-
-  const [page,setPage] = useState("dashboard")
-  const [metrics,setMetrics] = useState<any>(null)
-  const [history,setHistory] = useState<any[]>([])
+  const [page, setPage] = useState("os");
+  const [metrics, setMetrics] = useState<any>(null);
+  const [history, setHistory] = useState<any[]>([]);
+  const [osInfo, setOsInfo] = useState<any>({});
 
   const scan = async () => {
-
-    if (!window?.electronAPI) return
-
-    const result = await window.electronAPI.scanSystem()
-
-    if (!result) return
-
-    setMetrics(result)
-
-    setHistory(prev => [
-      ...prev.slice(-20),
-      {
-        time:new Date().toLocaleTimeString(),
-        cpu:result.cpu,
-        memory:result.memory
+    try {
+      if (!window?.electronAPI) {
+        console.warn("Electron API not found");
+        return;
       }
-    ])
 
-  }
+      const result = await window.electronAPI.scanSystem();
 
-  useEffect(()=>{
+      if (!result) {
+        console.warn("Scan returned null");
+        return;
+      }
 
-    scan()
+      setMetrics(result);
 
-    const interval = setInterval(scan,5000)
+      setHistory((prev) => [
+        ...prev.slice(-30),
 
-    return ()=>clearInterval(interval)
+        {
+          time: new Date().toLocaleTimeString(),
+          cpu: result?.cpu ?? 0,
+          memory: result?.memory ?? 0,
+        },
+      ]);
+    } catch (err) {
+      console.error("Scan failed", err);
+    }
+  };
 
-  },[])
+  useEffect(() => {
+    scan();
 
+    const interval = setInterval(scan, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-
     <div className="flex h-screen overflow-hidden">
+      <Sidebar setPage={setPage} />
 
-      {/* Sidebar */}
-      <Sidebar setPage={setPage}/>
-
-      {/* Right Side */}
       <div className="flex flex-col flex-1">
+        <Header metrics={metrics} />
 
-        {/* Header */}
-        <Header metrics={metrics}/>
-
-        {/* Main Menu */}
         <div className="flex-1 overflow-y-auto">
-
           <MainMenu
             page={page}
             metrics={metrics}
             history={history}
+            osInfo={osInfo}
+            setOsInfo={setOsInfo}
           />
-
         </div>
-
       </div>
-
     </div>
-
-  )
-
+  );
 }

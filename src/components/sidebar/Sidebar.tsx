@@ -1,51 +1,50 @@
-"use client"
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
 
 export default function Sidebar({ setPage }: any) {
-
   const items = [
-    { id: "dashboard", label: "Dashboard" },
-    { id: "os", label: "1. OS Info" },
-    { id: "cpu", label: "2. CPU & Memory" },
-    { id: "disk", label: "3. Disk Usage" },
-    { id: "network", label: "4. Network" },
-    { id: "antivirus", label: "5. Antivirus" },
-    { id: "ad", label: "6. AD Scanner" }
-  ]
+    { id: "os", label: "OS Info" },
+    { id: "cpu", label: "CPU & Memory" },
+    { id: "disk", label: "Disk Usage" },
+    { id: "network", label: "Network" },
+    { id: "antivirus", label: "Antivirus" },
+    { id: "ad", label: "AD Scanner" },
+  ];
 
   return (
+    <div className="w-64 h-screen border-r bg-background flex flex-col">
+      {/* Logo / Name */}
 
-    <div className="w-64 h-screen bg-blue-900 text-white flex flex-col p-5">
+      <div className="p-3 flex items-center gap-3">
+        <Avatar>
+          <AvatarFallback>TS</AvatarFallback>
+        </Avatar>
 
-     {/* Logo / Name */}
-      <div className="p-0 border-b  flex items-center gap-3">
-
-        <img
-          src="/logo.png"
-          className="w-10 h-10"
-        />
-
-        <h2 className="text-lg font-bold">
-          Turbo Scanner
-        </h2>
-
+        <div>
+          <p className="font-bold">Turbo Scanner</p>
+          <p className="text-xs text-muted-foreground">System Monitor</p>
+        </div>
       </div>
 
-      <div className="flex flex-col gap-2">
+      <Separator />
 
-        {items.map((item)=>(
-          <div
+      {/* Menu */}
+
+      <div className="p-4 flex flex-col gap-2">
+        {items.map((item) => (
+          <Button
             key={item.id}
-            onClick={()=>setPage(item.id)}
-            className="p-3 hover:bg-blue-700 cursor-pointer rounded"
+            variant="ghost"
+            className="justify-start"
+            onClick={() => setPage(item.id)}
           >
             {item.label}
-          </div>
+          </Button>
         ))}
-
       </div>
-
     </div>
-
-  )
-
+  );
 }
