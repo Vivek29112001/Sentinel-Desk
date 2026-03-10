@@ -11,7 +11,7 @@ export default function AntivirusStatus() {
     if (!window?.electronAPI?.antivirusStatus) return;
 
     const data = await window.electronAPI.antivirusStatus();
-
+    console.log(data);
     if (!data) return;
 
     setAntivirus(data);
