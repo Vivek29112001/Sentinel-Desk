@@ -127,17 +127,5 @@ Grafana
 Windows Task Manager
 System Monitoring Agents
 
-# sq lit data base embidded exe k sath ui m kasa bh data aa raha hai
 
-# live chart work nhi krna chiya isko database se lao static
-
-# run full scan se script run kra and database m save ho and vaha se data fill ho compare kra graph m
-
-# powershell
-
-# full ui control -> files,edit,view, window, help
-
-# UI in linux m test krna hai (Container bna k )
-
-# dashboard m table aaya ??
 >>>>>>> ad2ffed (day 2)
