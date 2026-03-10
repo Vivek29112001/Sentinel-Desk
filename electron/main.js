@@ -141,3 +141,19 @@ ipcMain.handle("antivirus-status", async () => {
     return await runPython(file)
 
 })
+
+ipcMain.handle("get-ad-info", async () => {
+
+    const file = path.join(__dirname, "../python/ad_scanner.py")
+
+    return await runPython(file)
+
+})
+
+ipcMain.handle("threat-scan", async () => {
+
+    const file = path.join(__dirname, "../python/threat_detector.py")
+
+    return await runPython(file)
+
+})

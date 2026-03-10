@@ -12,6 +12,8 @@ declare global {
        getDiskUsage:()=>Promise<any>
        networkMonitor:()=>Promise<any>
        antivirusStatus:()=>Promise<any>
+       getADInfo:()=>Promise<any>
+       threatScan:()=>Promise<any>
     }
 
   }

@@ -2,7 +2,7 @@
 
 import SystemChart from "@/src/components/SystemChart";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Cpu, MemoryStick, Activity } from "lucide-react";
+import { Cpu, MemoryStick, Activity, Server } from "lucide-react";
 
 export default function CpuMemory({ metrics, history }: any) {
   if (!metrics) return <div className="text-lg">Loading CPU data...</div>;
@@ -19,14 +19,16 @@ export default function CpuMemory({ metrics, history }: any) {
 
   return (
     <div className="space-y-8">
+      {/* PAGE TITLE */}
+
       <h1 className="text-2xl font-bold flex items-center gap-2">
         <Activity size={20} />
         CPU & Memory Monitor
       </h1>
 
-      {/* Stats Cards */}
+      {/* TOP STATS */}
 
-      <div className="grid md:grid-cols-3 gap-5">
+      <div className="grid md:grid-cols-4 gap-5">
         <StatCard
           title="CPU Usage"
           value={`${metrics?.cpu ?? 0}%`}
@@ -40,18 +42,24 @@ export default function CpuMemory({ metrics, history }: any) {
         />
 
         <StatCard
+          title="Total RAM"
+          value={`${metrics?.total_ram_gb ?? "-"} GB`}
+          icon={<Server size={18} />}
+        />
+
+        <StatCard
           title="Running Processes"
           value={metrics?.processes?.length ?? 0}
           icon={<Activity size={18} />}
         />
       </div>
 
-      {/* Charts */}
+      {/* CHARTS */}
 
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="grid md:grid-cols-2 gap-6">
         <Card className="bg-gray-50 border border-gray-200 rounded-xl">
           <CardHeader>
-            <CardTitle className="text-sm text-gray-500">CPU Usage</CardTitle>
+            <CardTitle>CPU Usage</CardTitle>
           </CardHeader>
 
           <CardContent>
@@ -61,9 +69,7 @@ export default function CpuMemory({ metrics, history }: any) {
 
         <Card className="bg-gray-50 border border-gray-200 rounded-xl">
           <CardHeader>
-            <CardTitle className="text-sm text-gray-500">
-              Memory Usage
-            </CardTitle>
+            <CardTitle>Memory Usage</CardTitle>
           </CardHeader>
 
           <CardContent>
@@ -72,7 +78,7 @@ export default function CpuMemory({ metrics, history }: any) {
         </Card>
       </div>
 
-      {/* Process Table */}
+      {/* TOP PROCESSES */}
 
       <Card className="bg-gray-50 border border-gray-200 rounded-xl">
         <CardHeader>
@@ -87,24 +93,45 @@ export default function CpuMemory({ metrics, history }: any) {
                 <th className="text-left p-2">Process</th>
                 <th className="text-left p-2">CPU %</th>
                 <th className="text-left p-2">Memory %</th>
+                <th className="text-left p-2">RAM MB</th>
+                <th className="text-left p-2">User</th>
               </tr>
             </thead>
 
             <tbody>
-              {metrics?.processes?.map((p: any) => (
-                <tr
-                  key={p.pid}
-                  className="border-b hover:bg-gray-100 transition"
-                >
-                  <td className="p-2">{p.pid}</td>
+              {metrics?.processes?.map((p: any) => {
+                const cpu = Number(p.cpu_percent ?? 0);
+                const mem = Number(p.memory_percent ?? 0);
 
-                  <td className="p-2 font-medium">{p.name}</td>
+                return (
+                  <tr
+                    key={p.pid}
+                    className={`border-b hover:bg-gray-100 transition
+                  ${cpu > 50 ? "bg-red-50" : ""}`}
+                  >
+                    <td className="p-2 text-gray-600">{p.pid}</td>
 
-                  <td className="p-2">{p.cpu_percent}</td>
+                    <td className="p-2 font-medium">
+                      {p.name || "Unknown Process"}
+                    </td>
 
-                  <td className="p-2">{Number(p.memory_percent).toFixed(2)}</td>
-                </tr>
-              ))}
+                    <td
+                      className={`p-2 font-medium
+                  ${cpu > 50 ? "text-red-600" : ""}`}
+                    >
+                      {cpu.toFixed(1)} %
+                    </td>
+
+                    <td className="p-2">{mem.toFixed(2)} %</td>
+
+                    <td className="p-2">
+                      {p.memory_mb ? `${p.memory_mb} MB` : "-"}
+                    </td>
+
+                    <td className="p-2 text-gray-600">{p.user || "SYSTEM"}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </CardContent>

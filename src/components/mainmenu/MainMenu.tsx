@@ -1,10 +1,12 @@
 "use client";
 
+import ADScanner from "@/src/models/ADScanner";
 import AntivirusStatus from "@/src/models/AntivirusStatus";
 import CpuMemory from "@/src/models/CpuMemory";
 import DiskUsage from "@/src/models/DiskUsage";
 import NetworkMonitor from "@/src/models/NetworkMonitor";
 import OSInfoComponent from "@/src/models/OSInfo";
+import ThreatScanner from "@/src/models/ThreatScanner";
 
 export default function MainMenu({
   page,
@@ -24,7 +26,9 @@ export default function MainMenu({
 
     antivirus: <AntivirusStatus />,
 
-    ad: <h2 className="text-2xl font-bold">AD Scanner</h2>,
+    ad: <ADScanner />,
+
+    threat: <ThreatScanner />,
   };
 
   return (

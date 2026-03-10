@@ -1,0 +1,14 @@
+directories:
+  output: release
+  buildResources: build
+appId: com.sentineldesk.app
+productName: SentinelDesk
+files:
+  - filter:
+      - electron/**/*
+      - .next/**/*
+      - node_modules/**/*
+      - package.json
+win:
+  target: nsis
+electronVersion: 40.8.0

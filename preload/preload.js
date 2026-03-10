@@ -14,5 +14,9 @@ contextBridge.exposeInMainWorld("electronAPI", {
 
     networkMonitor: () => ipcRenderer.invoke("network-monitor"),
 
-    antivirusStatus: () => ipcRenderer.invoke("antivirus-status")
+    antivirusStatus: () => ipcRenderer.invoke("antivirus-status"),
+
+    getADInfo: () => ipcRenderer.invoke("get-ad-info"),
+
+    threatScan: () => ipcRenderer.invoke("threat-scan")
 })

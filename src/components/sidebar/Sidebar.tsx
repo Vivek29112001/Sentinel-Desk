@@ -12,13 +12,14 @@ export default function Sidebar({ setPage }: any) {
     { id: "network", label: "Network" },
     { id: "antivirus", label: "Antivirus" },
     { id: "ad", label: "AD Scanner" },
+    { id: "threat", label: "Threat Scanner" },
   ];
 
   return (
     <div className="w-64 h-screen border-r bg-background flex flex-col">
-      {/* Logo / Name */}
+      {/* TOP LOGO AREA (same as header height) */}
 
-      <div className="p-3 flex items-center gap-3">
+      <div className="h-16 px-4 flex items-center gap-3">
         <Avatar>
           <AvatarFallback>TS</AvatarFallback>
         </Avatar>
@@ -31,7 +32,7 @@ export default function Sidebar({ setPage }: any) {
 
       <Separator />
 
-      {/* Menu */}
+      {/* MENU */}
 
       <div className="p-4 flex flex-col gap-2">
         {items.map((item) => (

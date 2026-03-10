@@ -1,0 +1,8 @@
+version: 0.1.0
+files:
+  - url: SentinelDesk-Setup-0.1.0.exe
+    sha512: o5kbPRGvw9i0anDNq70v8OhYib3yCDPePDK5gzvccZmzU5NA5Wsc11wFhpI1mbaEY/OKALtOfByxvXr/93YhCQ==
+    size: 365403768
+path: SentinelDesk-Setup-0.1.0.exe
+sha512: o5kbPRGvw9i0anDNq70v8OhYib3yCDPePDK5gzvccZmzU5NA5Wsc11wFhpI1mbaEY/OKALtOfByxvXr/93YhCQ==
+releaseDate: '2026-03-09T13:12:15.972Z'
