@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require("electron")
 const path = require("path")
 const { spawn } = require("child_process")
+const { runNetworkScan } = require("./networkScanner")
 
 let win
 
@@ -155,5 +156,18 @@ ipcMain.handle("threat-scan", async () => {
     const file = path.join(__dirname, "../python/threat_detector.py")
 
     return await runPython(file)
+
+})
+
+
+ipcMain.handle("network-scan", async (event, mode) => {
+
+    return new Promise((resolve) => {
+
+        runNetworkScan(mode, (devices) => {
+            resolve(devices)
+        })
+
+    })
 
 })

@@ -5,6 +5,7 @@ import AntivirusStatus from "@/src/models/AntivirusStatus";
 import CpuMemory from "@/src/models/CpuMemory";
 import DiskUsage from "@/src/models/DiskUsage";
 import NetworkMonitor from "@/src/models/NetworkMonitor";
+import NetworkScanner from "@/src/models/NetworkScanner";
 import OSInfoComponent from "@/src/models/OSInfo";
 import ThreatScanner from "@/src/models/ThreatScanner";
 
@@ -23,6 +24,7 @@ export default function MainMenu({
     disk: <DiskUsage />,
 
     network: <NetworkMonitor />,
+    networkscanner: <NetworkScanner />,
 
     antivirus: <AntivirusStatus />,
 

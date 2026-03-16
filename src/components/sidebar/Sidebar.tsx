@@ -10,6 +10,7 @@ export default function Sidebar({ setPage }: any) {
     { id: "cpu", label: "CPU & Memory" },
     { id: "disk", label: "Disk Usage" },
     { id: "network", label: "Network" },
+    { id: "networkscanner", label: "Network Scanner" },
     { id: "antivirus", label: "Antivirus" },
     { id: "ad", label: "AD Scanner" },
     { id: "threat", label: "Threat Scanner" },

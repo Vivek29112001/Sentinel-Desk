@@ -18,5 +18,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
 
     getADInfo: () => ipcRenderer.invoke("get-ad-info"),
 
-    threatScan: () => ipcRenderer.invoke("threat-scan")
+    threatScan: () => ipcRenderer.invoke("threat-scan"),
+
+    networkScan: (mode) => ipcRenderer.invoke("network-scan", mode)
 })

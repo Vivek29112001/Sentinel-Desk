@@ -14,6 +14,7 @@ declare global {
        antivirusStatus:()=>Promise<any>
        getADInfo:()=>Promise<any>
        threatScan:()=>Promise<any>
+       networkscanner:()=>Promise<any>
     }
 
   }
