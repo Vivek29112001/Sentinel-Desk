@@ -199,6 +199,50 @@ export default function NetworkScanner() {
             </CardContent>
           </Card>
         </div>
+        <div className="flex flex-col">
+          <Card className="overflow-hidden h-[300px]">
+            <CardHeader className="px-4 py-3 border-b bg-muted/40">
+              <CardTitle className="text-sm font-semibold">
+                Live Network Events
+              </CardTitle>
+            </CardHeader>
+
+            <CardContent className="p-0 overflow-y-auto h-[250px]">
+              {events.length === 0 && (
+                <div className="p-4 text-sm text-muted-foreground">
+                  No network activity detected
+                </div>
+              )}
+
+              <div className="divide-y">
+                {events.map((e, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center justify-between px-4 py-3 hover:bg-muted/30 transition"
+                  >
+                    <div className="flex items-center gap-3">
+                      {e.type === "join" && (
+                        <div className="w-2.5 h-2.5 rounded-full bg-green-500" />
+                      )}
+
+                      {e.type === "leave" && (
+                        <div className="w-2.5 h-2.5 rounded-full bg-orange-500" />
+                      )}
+
+                      <span className="text-sm font-medium">
+                        {e.type === "join" ? "Device Joined" : "Device Left"}
+                      </span>
+                    </div>
+
+                    <div className="text-xs text-muted-foreground">
+                      {e.device.ip} • {e.time}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
 
       {/* SUSPICIOUS DEVICES */}
