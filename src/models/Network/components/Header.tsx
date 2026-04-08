@@ -11,14 +11,28 @@ export default function Header({ deepScan, deepLoading }: any) {
                 Network Scanner
             </h1>
 
-            <div className="flex gap-2">
+            <div className="flex gap-3 items-center">
 
-                <Badge variant="secondary">
-                    🔄 Live Scan Running
+                {/* LIVE STATUS */}
+                <Badge variant="secondary" className="bg-blue-100 text-blue-700">
+                    🔄 Live Monitoring
                 </Badge>
 
-                <Button onClick={deepScan} disabled={deepLoading}>
-                    {deepLoading ? "Scanning..." : "⚡ Deep Scan"}
+                {/* DEEP SCAN BUTTON */}
+                <Button
+                    onClick={deepScan}
+                    disabled={deepLoading}
+                    className="flex items-center gap-2"
+                >
+                    {deepLoading ? (
+                        <>
+                            ⚡ Deep Scanning...
+                        </>
+                    ) : (
+                        <>
+                            ⚡ Run Deep Scan
+                        </>
+                    )}
                 </Button>
 
             </div>

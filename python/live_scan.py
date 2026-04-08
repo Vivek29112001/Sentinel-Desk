@@ -121,8 +121,6 @@ def scan():
 
     network = get_network()
 
-    print("Scanning:", network)
-
     # 🔥 BEST detection combo
     scanner.scan(hosts=network, arguments="-sn -PR")
 
